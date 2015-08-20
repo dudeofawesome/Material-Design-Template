@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
-public class CodeLabActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -26,7 +26,7 @@ public class CodeLabActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_code_lab);
+        setContentView(R.layout.activity_main);
 
         initInstances();
     }
@@ -36,7 +36,7 @@ public class CodeLabActivity extends AppCompatActivity {
 	    setSupportActionBar(toolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawerToggle = new ActionBarDrawerToggle(CodeLabActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
+        drawerToggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
         drawerLayout.setDrawerListener(drawerToggle);
 
 	    rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
@@ -92,7 +92,7 @@ public class CodeLabActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_code_lab, menu);
+        getMenuInflater().inflate(R.menu.menu_main_overflow, menu);
         return true;
     }
 
