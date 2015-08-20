@@ -1,33 +1,80 @@
-package com.inthecheesefactory.lab.designlibrary;
+package io.orleans.materialtemplate;
 
 import android.content.res.Configuration;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.support.v7.widget.Toolbar;
 
 public class CodeLabActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
+    FloatingActionButton fabBtn;
+	CoordinatorLayout rootLayout;
+	Toolbar toolbar;
+	NavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_lab);
-        
+
         initInstances();
     }
 
     private void initInstances() {
+	    toolbar = (Toolbar) findViewById(R.id.toolbar);
+	    setSupportActionBar(toolbar);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerToggle = new ActionBarDrawerToggle(CodeLabActivity.this, drawerLayout, R.string.hello_world, R.string.hello_world);
         drawerLayout.setDrawerListener(drawerToggle);
 
+	    rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+	    navigation = (NavigationView) findViewById(R.id.navigation);
+	    navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+		    @Override
+		    public boolean onNavigationItemSelected (MenuItem menuItem) {
+			    int id = menuItem.getItemId();
+			    switch (id) {
+				    case R.id.navItem1:
+					    break;
+				    case R.id.navItem2:
+					    break;
+				    case R.id.navItem3:
+					    break;
+			    }
+			    return false;
+		    }
+	    });
+
+	    fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
+	    fabBtn.setOnClickListener(new View.OnClickListener() {
+		    @Override
+		    public void onClick (View v) {
+			    Snackbar.make(rootLayout, "Hello. I am Snackbar!", Snackbar.LENGTH_SHORT)
+					    .setAction("Done", new View.OnClickListener() {
+						    @Override
+						    public void onClick(View v) {
+//							    ((Snackbar) v).dismiss();
+						    }
+					    })
+					    .show();
+		    }
+	    });
     }
 
     @Override
